@@ -1,12 +1,14 @@
 package Model;
 
+import java.util.Date;
+
 public class Ocupar {
 
     private int idOcupar;
     private int idVeiculo;
     private int idVaga;
-    private String dataIni;
-    private String dataFim;
+    private Date dataIni;
+    private Date dataFim;
     private float precoTotal;
 
     public int getIdOcupar() {
@@ -33,19 +35,20 @@ public class Ocupar {
         this.idVaga = idVaga;
     }
 
-    public String getDataIni() {
+    public Date getDataIni() {
         return dataIni;
     }
 
-    public void setDataIni(String dataIni) {
+    public void setDataIni(Date dataIni) {
+    	
         this.dataIni = dataIni;
     }
 
-    public String getDataFim() {
+    public Date getDataFim() {
         return dataFim;
     }
 
-    public void setDataFim(String dataFim) {
+    public void setDataFim(Date dataFim) {
         this.dataFim = dataFim;
     }
 

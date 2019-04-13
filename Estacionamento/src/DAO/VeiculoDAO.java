@@ -47,7 +47,7 @@ public class VeiculoDAO extends ExecuteSQL{
         try {
             con = new Conexao().abrirConexao(); 
             String sql = " update veiculo set"
-                    + " placa= ?, prioridade = ?, tipo_veiculo_fk = ?";
+                    + " placa= ?, prioridade = ?, tipo_veiculo_fk = ? where id="+obj.getIdVeiculo();
             stm = con.prepareStatement(sql);
             stm.setString(1, obj.getPlaca());
             stm.setBoolean(2, obj.isPrioridade());
