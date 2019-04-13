@@ -114,7 +114,7 @@ public class VeiculoDAO extends ExecuteSQL{
                con = new Conexao().AbrirConexao();
                stm= con.prepareStatement(sql);
                rs= stm.executeQuery();
-               List<Veiculo> lista = new ArrayList();
+               List<Veiculo> lista = new ArrayList<>();
                Veiculo obj;
             while(rs.next()){
                 obj= new Veiculo();

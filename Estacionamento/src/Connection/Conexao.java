@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 public class Conexao {
 	public Conexao() throws ClassNotFoundException, SQLException {}
 
-    public static Connection AbrirConexao(){
+    public Connection AbrirConexao(){
         Connection connection = null;
          
         try {
@@ -29,18 +29,20 @@ public class Conexao {
               } else { 
                    JOptionPane.showMessageDialog(null,"Conexão ok");
               }
+              readFile.close();
               return connection;
         } catch (SQLException errosql) {
              JOptionPane.showMessageDialog(null, "Erro ao inserir dados" + errosql.getMessage());
         } catch (Exception e) {
              JOptionPane.showMessageDialog(null, "erro na Conexão com o Banco","Estacionamento", JOptionPane.ERROR_MESSAGE);
              e.getMessage();
-        }
+        }finally {
+		}
         
         return null;
     }
     
-    public static void FecharConexao(Connection connection){
+    public void FecharConexao(Connection connection){
          try {
               connection.close();
          } catch (Exception e) {
