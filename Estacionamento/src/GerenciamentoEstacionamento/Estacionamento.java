@@ -17,6 +17,17 @@ public class Estacionamento {
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Erro: " + e.getMessage());
         }
+        // Criar estacionamento
+        String nomeEstacionamento = JOptionPane.showInputDialog(null,
+				 "Qual será o nome do estacionamento?",
+				 "Criar estacionamento", 
+				 JOptionPane.INFORMATION_MESSAGE);
+        int qntAndares  = Integer.parseInt(JOptionPane.showInputDialog(null,
+				 "Quantos andares "+nomeEstacionamento+" terá?",
+				 "Criar estacionamento", 
+				 JOptionPane.INFORMATION_MESSAGE));
+
+
         //OCUPAR VAGA
         String placa = JOptionPane.showInputDialog(null,
 				 "Informe a placa do veï¿½culo:",
