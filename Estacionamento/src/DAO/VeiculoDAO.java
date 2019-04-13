@@ -16,7 +16,7 @@ public class VeiculoDAO extends ExecuteSQL{
      
      public Boolean inserir(Veiculo obj){
           try {
-               con = new Conexao().AbrirConexao();
+               con = new Conexao().abrirConexao();
                String sql = "insert into veiculo values (?,?,?,?)";
                stm = con.prepareStatement(sql);
                stm.setInt(1, obj.getIdVeiculo());
@@ -47,8 +47,7 @@ public class VeiculoDAO extends ExecuteSQL{
      }
      public boolean alterar(Veiculo obj) {
         try {
-            con = new Conexao().AbrirConexao(); 
-            con = new Conexao().AbrirConexao();
+            con = new Conexao().abrirConexao(); 
             String sql = " update veiculo set"
                     + " placa= ?, prioridade = ?, tipo_veiculo_fk = ?";
             stm = con.prepareStatement(sql);
@@ -80,7 +79,7 @@ public class VeiculoDAO extends ExecuteSQL{
      
     public boolean excluir(String codigo) {
           try {
-               con = new Conexao().AbrirConexao();
+               con = new Conexao().abrirConexao();
                String sql = "delete from veiculo where codigo='"+codigo+"'";
                stm = con.prepareStatement(sql);
                if (stm.executeUpdate() > 0) {
@@ -111,7 +110,7 @@ public class VeiculoDAO extends ExecuteSQL{
            else
                sql= "select * from veiculo where placa like %"+parametro+"%";
           try {
-               con = new Conexao().AbrirConexao();
+               con = new Conexao().abrirConexao();
                stm= con.prepareStatement(sql);
                rs= stm.executeQuery();
                List<Veiculo> lista = new ArrayList<>();
@@ -145,3 +144,4 @@ public class VeiculoDAO extends ExecuteSQL{
     }
 
 }
+
