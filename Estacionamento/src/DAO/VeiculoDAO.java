@@ -32,15 +32,13 @@ public class VeiculoDAO extends ExecuteSQL{
                JOptionPane.showMessageDialog(null,
                     "Erro ao inserir dados" + errosql.getMessage());
           } catch (Exception erro) {
-               JOptionPane.showMessageDialog(null,
-                    "Erro ao inserir dados" + erro.getMessage());
+        	  System.out.println("Erro ao inserir dados" + erro.getMessage());
           } finally {
                try {
                     stm.close();
                     con.close();
                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null,"Erro ao fechar conexão" 
-                    + ex.getMessage());
+            	   System.out.println("Erro ao fechar conexão"+ ex.getMessage());
                }
           } 
           return false;
@@ -60,18 +58,15 @@ public class VeiculoDAO extends ExecuteSQL{
                return true;
             }
         } catch (SQLException errosql) {
-            JOptionPane.showMessageDialog(null,
-                    "Erro ao alterar  dados" + errosql.getMessage());
+        	System.out.println("Erro ao alterar  dados" + errosql.getMessage());
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(null,
-                    "Erro ao alterar  dados" + erro.getMessage());
+        	System.out.println("Erro ao alterar  dados" + erro.getMessage());
         } finally {
                try {
                     stm.close();
                     con.close();
                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null,"Erro ao fechar conexão" 
-                    + ex.getMessage());
+            	   System.out.println("Erro ao fechar conexão"+ ex.getMessage());
                }
           } 
           return false;
@@ -80,16 +75,15 @@ public class VeiculoDAO extends ExecuteSQL{
     public boolean excluir(String codigo) {
           try {
                con = new Conexao().abrirConexao();
-               String sql = "delete from veiculo where codigo='"+codigo+"'";
+               String sql = "delete from veiculo where id='"+codigo+"'";
                stm = con.prepareStatement(sql);
                if (stm.executeUpdate() > 0) {
                     return true;
                }
           } catch (SQLException erro) {
-              JOptionPane.showMessageDialog(null, "Erro ao excluir dados da tabela" + erro.getMessage());
+        	  System.out.println("Erro ao excluir dados da tabela" + erro.getMessage());
           } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null,"Erro ao fechar conexão" 
-                    + ex.getMessage());
+        	  System.out.println("Erro ao fechar conexão"+ ex.getMessage());
           }finally {
                try {
                     stm.close();
@@ -97,8 +91,7 @@ public class VeiculoDAO extends ExecuteSQL{
                } catch (SQLException ex) {
                     Logger.getLogger(VeiculoDAO.class.getName()).log(Level.SEVERE, null, ex);
                }catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null,"Erro ao fechar conexão" 
-                    + ex.getMessage());
+            	   System.out.println("Erro ao fechar conexão"+ ex.getMessage());
                }
           }
           return false;  
@@ -135,8 +128,7 @@ public class VeiculoDAO extends ExecuteSQL{
                } catch (SQLException ex) {
                     Logger.getLogger(VeiculoDAO.class.getName()).log(Level.SEVERE, null, ex);
                }catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null,"Erro ao fechar conexão" 
-                    + ex.getMessage());
+            	   System.out.println("Erro ao fechar conexão"+ ex.getMessage());
                }
           }     
     
