@@ -25,6 +25,7 @@ tmp/
 local.properties
 .settings/
 .loadpath
+src/passwordMySql.txt
 .recommenders
 
 # External tool builders

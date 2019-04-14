@@ -3,6 +3,7 @@ package GerenciamentoEstacionamento;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
+import Model.Vaga;
 
 import javax.swing.JOptionPane;
 
@@ -27,12 +28,39 @@ public class Estacionamento {
 				JOptionPane.INFORMATION_MESSAGE
 		);
         
-        int qntAndares  = Integer.parseInt(JOptionPane.showInputDialog(null,
+        int qntAndares = Integer.parseInt(JOptionPane.showInputDialog(null,
 				 "Quantos andares o " + nomeEstacionamento + " terÃ¡?",
 				 "Criar estacionamento", 
 				 JOptionPane.INFORMATION_MESSAGE)
         );
-
+        //
+        
+        // Criar um número diferente de vagas por andar
+        int vagaPorAndar[] = new int[qntAndares];
+        
+        for(int j = 0; j < qntAndares;j++) {
+        	vagaPorAndar[j] = Integer.parseInt(JOptionPane.showInputDialog(null,
+   				 "Quantas vagas terá o andar " +j+ "?",
+   				 "Criar estacionamento", 
+   				 JOptionPane.INFORMATION_MESSAGE)
+           );
+        }
+        // 
+        
+        // Criar vagas
+        int contador = 1;
+        Vaga A = new Vaga();
+        for(int i = 0; i < qntAndares; i++) {
+        	for(int j = 0; j < vagaPorAndar[i] - 5; j++) { // Deixar 5 vagas prioritárias
+        		A.setAndar(i);
+        		A.setIdVaga(contador);
+        		A.setLiberado(true);
+        		A.setNumeroVaga(j+1);
+        		A.setPrioridade(false);
+        	}
+        }
+        //
+        
         while(true) {
         	
             // Menu
@@ -67,7 +95,19 @@ public class Estacionamento {
 	        	case 2: System.out.println("Faturamento");
 	        			break;
 	        	case 3: System.out.println("Ver vagas");
-	        			break;
+	        		int comeco = Integer.parseInt(JOptionPane.showInputDialog(null,
+	      				 "Informe o andar que deseja ver:",
+	      				 "Ver vagas", 
+	      				 JOptionPane.INFORMATION_MESSAGE));
+	        		
+	        		int lul; // De onde vai começar o FOR
+	        		
+	        		if(comeco == 0) lul = 0;
+	        		else lul = vagaPorAndar[comeco-1];
+	        		
+	        		for(;lul<)
+	        		
+	        		break;
 	        	default: System.out.println("Errrrrouuu");
 	        			 break;
 	        } // switch
