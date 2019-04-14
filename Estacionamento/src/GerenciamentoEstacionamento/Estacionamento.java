@@ -50,6 +50,7 @@ public class Estacionamento {
         
         // Criar vagas
         Vaga A = new Vaga();
+        VagaDAO VD = new VagaDAO();
         for(int i = 0; i < qntAndares; i++) {
         	if(vagaPorAndar[i] > 5) { // Criando as vagas prioritárias
         		for(int j = 0; j < 5; j++) {
@@ -57,6 +58,7 @@ public class Estacionamento {
             		A.setLiberado(true);
             		A.setNumeroVaga(j+1);
             		A.setPrioridade(true);
+            		VD.insert(A);
             	}
         	}
         	else {
@@ -65,6 +67,7 @@ public class Estacionamento {
             		A.setLiberado(true);
             		A.setNumeroVaga(j+1);
             		A.setPrioridade(true);
+            		VD.insert(A);
             	}
         	}
         	for(int j = 5; j < vagaPorAndar[i]; j++) { // Criando as vagas normais
@@ -72,6 +75,7 @@ public class Estacionamento {
         		A.setLiberado(true);
         		A.setNumeroVaga(j+1);
         		A.setPrioridade(false);
+        		VD.insert(A);
         	}
         }
         //
