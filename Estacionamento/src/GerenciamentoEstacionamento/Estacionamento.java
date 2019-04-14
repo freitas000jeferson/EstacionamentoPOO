@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import Model.Vaga;
+import DAO.VagaDAO;
 
 import javax.swing.JOptionPane;
 
@@ -48,12 +49,26 @@ public class Estacionamento {
         // 
         
         // Criar vagas
-        int contador = 1;
         Vaga A = new Vaga();
         for(int i = 0; i < qntAndares; i++) {
-        	for(int j = 0; j < vagaPorAndar[i] - 5; j++) { // Deixar 5 vagas prioritárias
+        	if(vagaPorAndar[i] > 5) { // Criando as vagas prioritárias
+        		for(int j = 0; j < 5; j++) {
+            		A.setAndar(i);
+            		A.setLiberado(true);
+            		A.setNumeroVaga(j+1);
+            		A.setPrioridade(true);
+            	}
+        	}
+        	else {
+        		for(int j = 0; j < vagaPorAndar[i]; j++) { // Caso o andar tenha menos que 5 vagas
+            		A.setAndar(i);
+            		A.setLiberado(true);
+            		A.setNumeroVaga(j+1);
+            		A.setPrioridade(true);
+            	}
+        	}
+        	for(int j = 5; j < vagaPorAndar[i]; j++) { // Criando as vagas normais
         		A.setAndar(i);
-        		A.setIdVaga(contador);
         		A.setLiberado(true);
         		A.setNumeroVaga(j+1);
         		A.setPrioridade(false);
@@ -99,14 +114,6 @@ public class Estacionamento {
 	      				 "Informe o andar que deseja ver:",
 	      				 "Ver vagas", 
 	      				 JOptionPane.INFORMATION_MESSAGE));
-	        		
-	        		int lul; // De onde vai começar o FOR
-	        		
-	        		if(comeco == 0) lul = 0;
-	        		else lul = vagaPorAndar[comeco-1];
-	        		
-	        		for(;lul<)
-	        		
 	        		break;
 	        	default: System.out.println("Errrrrouuu");
 	        			 break;

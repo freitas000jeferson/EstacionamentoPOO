@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.JOptionPane;
+
 import Connection.Conexao;
 import Model.Vaga;
 
@@ -40,36 +42,12 @@ public class VagaDAO extends ExecuteSQL {
     	} 
     	return false;
     }
-    public boolean OcuparDesocupar(Vaga obj) {
-    	try {
-    		con = new Conexao().abrirConexao(); 
-    		String sql = " update vaga set prioridade = ? where id= "+obj.getIdVaga();
-	        stm = con.prepareStatement(sql);
-	        stm.setBoolean(1, obj.isPrioridade());
-	        if (stm.executeUpdate() > 0) {
-	        	System.out.println("alterado com sucesso.");
-	        	return true;
-	        }
-    	} catch (SQLException errosql) {
-    		System.out.println("Erro ao alterar  dados" + errosql.getMessage());
-	    } catch (Exception erro) {
-	    	System.out.println("Erro ao alterar  dados" + erro.getMessage());
-	    } finally {
-	    	try {
-	    		stm.close();
-	    		con.close();
-	    	} catch (SQLException ex) {
-	    		System.out.println("Erro ao fechar conexão"+ ex.getMessage());
-	    	}
-	    } 
-    	return false;
-    }
     public boolean alterar(Vaga obj) {
     	try {
     		con = new Conexao().abrirConexao(); 
     		String sql = " update vaga set"
     				+ " numero_vaga= ?, prioridade = ?, andar = ?,"
-    				+ "liberado = ? where id= "+obj.getIdVaga();
+    				+ "liberado = ?";
 	        stm = con.prepareStatement(sql);
 	        stm.setInt(1, obj.getNumeroVaga());
 	        stm.setBoolean(2, obj.isPrioridade());
@@ -93,27 +71,20 @@ public class VagaDAO extends ExecuteSQL {
 	    } 
     	return false;
     }
-    
 	     
-    
-    public Vaga getOne(int andar, int numVaga){
-    	String sql="select * from vaga where andar = "+andar+" and umero_vaga= "+numVaga;
+    public boolean excluir(String codigo) {
     	try {
     		con = new Conexao().abrirConexao();
-    		stm= con.prepareStatement(sql);
-    		rs= stm.executeQuery();
-    		Vaga obj= new Vaga();
-    		obj.setIdVaga(rs.getInt("id"));
-    		obj.setNumeroVaga(rs.getInt("numero_vaga"));
-    		obj.setPrioridade(rs.getBoolean("prioridade"));
-    		obj.setAndar(rs.getInt("andar"));
-    		obj.setLiberado(rs.getBoolean("liberado"));	
-    		return obj;
-    	} catch (ClassNotFoundException ex) {
-    		Logger.getLogger(VagaDAO.class.getName()).log(Level.SEVERE, null, ex);
-    	} catch (SQLException ex) {
-    		Logger.getLogger(VagaDAO.class.getName()).log(Level.SEVERE, null, ex);
-    	} finally{
+    		String sql = "delete from vaga where id='"+codigo+"'";
+    		stm = con.prepareStatement(sql);
+    		if (stm.executeUpdate() > 0) {
+    			return true;
+    		}
+    	} catch (SQLException erro) {
+    		System.out.println("Erro ao excluir dados da tabela" + erro.getMessage());
+    	} catch (Exception ex) {
+    		System.out.println("Erro ao fechar conexão"+ ex.getMessage());
+    	}finally {
     		try {
     			stm.close();
     			con.close();
@@ -122,10 +93,9 @@ public class VagaDAO extends ExecuteSQL {
     		}catch (Exception ex) {
     			System.out.println("Erro ao fechar conexão"+ ex.getMessage());
     		}
-    	}     
-    	return null;
-	}
-    
+    	}
+    	return false;  
+    }
     public List<Vaga> listarVagas(){
     	String sql="select * from vaga order by numero_vaga";
     	try {
@@ -160,14 +130,13 @@ public class VagaDAO extends ExecuteSQL {
     	}     
     	return null;
 	}
-  
     public List<Vaga> listarVagasDesocupadas(String parametro){
     	String sql;
     	if(parametro.equals("listar"))
-    		sql="select *  from vaga order by numero_vaga where liberado = 'true'";
+    		sql="select *  from vaga order by numero_vaga where liberado = true";
     	else {
     		int andar= Integer.parseInt(parametro);
-    		sql="select * from vaga where liberado = 'true' and andar ='"+andar+"'";
+    		sql="select * from vaga order by numero_vaga where liberado = true and andar ="+andar;
     	}
     	try {
     		con = new Conexao().abrirConexao();
@@ -201,30 +170,4 @@ public class VagaDAO extends ExecuteSQL {
     	}     
     	return null;
 	}
-    
-    public boolean excluir(String codigo) {
-    	try {
-    		con = new Conexao().abrirConexao();
-    		String sql = "delete from vaga where id='"+codigo+"'";
-    		stm = con.prepareStatement(sql);
-    		if (stm.executeUpdate() > 0) {
-    			return true;
-    		}
-    	} catch (SQLException erro) {
-    		System.out.println("Erro ao excluir dados da tabela" + erro.getMessage());
-    	} catch (Exception ex) {
-    		System.out.println("Erro ao fechar conexão"+ ex.getMessage());
-    	}finally {
-    		try {
-    			stm.close();
-    			con.close();
-    		} catch (SQLException ex) {
-    			Logger.getLogger(VagaDAO.class.getName()).log(Level.SEVERE, null, ex);
-    		}catch (Exception ex) {
-    			System.out.println("Erro ao fechar conexão"+ ex.getMessage());
-    		}
-    	}
-    	return false;  
-    }
-    
 }
