@@ -2,7 +2,12 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="/home/sena/Downloads/mysql-connector-java-5.1.47/mysql-connector-java-5.1.47.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mafer/Downloads/mysql-connector-java-5.1.47.jar"/>
+=======
+	<classpathentry kind="lib" path="C:/Users/jeferson/Downloads/mysql-connector-java-5.1.47/mysql-connector-java-5.1.47/mysql-connector-java-5.1.47.jar"/>
+	<classpathentry kind="lib" path="D:/Arquivos/Atividades_repositorio/projeto POO v2/EstacionamentoPOO/Estacionamento/src/biblioteca mysql/mysql-connector-java-5.1.47.jar"/>
+>>>>>>> f4c1a86e7f8819578139c633d22ad20b0e3b08b3
 	<classpathentry kind="output" path="bin"/>
 </classpath>
